@@ -1,4 +1,5 @@
 package com.example.yum_signup_server.member.entity
 
-class MemberRole {
+enum class MemberRole {
+    USER, ADMIN
 }
