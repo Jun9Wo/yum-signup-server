@@ -10,7 +10,7 @@ class LoginService(private val memberRepository: MemberRepository) {
 
     fun authenticateUser(loginDto: LoginDto): Boolean {
         val user = memberRepository.findByEmail(loginDto.email)
-            .orElseThrow { IllegalArgumentException("이메일이 존재하지 않습니다.") }
+            ?: throw IllegalArgumentException("이메일이 존재하지 않습니다.") // ✅ Optional → Kotlin null-safe 방식으로 변경
 
         return hashPassword(loginDto.password) == user.password
     }

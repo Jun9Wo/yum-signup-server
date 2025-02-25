@@ -10,7 +10,7 @@ import java.security.MessageDigest
 class SignupService(private val memberRepository: MemberRepository) {
 
     fun registerUser(signupDto: SignupDto) {
-        if (memberRepository.findByEmail(signupDto.email).isPresent) {
+        if (memberRepository.findByEmail(signupDto.email) != null) {
             throw IllegalArgumentException("이미 존재하는 이메일입니다.")
         }
 
