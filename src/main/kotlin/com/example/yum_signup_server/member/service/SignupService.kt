@@ -2,6 +2,7 @@ package com.example.yum_signup_server.member.service
 
 import com.example.yum_signup_server.member.dto.SignupDto
 import com.example.yum_signup_server.member.entity.Member
+import com.example.yum_signup_server.member.entity.MemberRole
 import com.example.yum_signup_server.member.repository.MemberRepository
 import org.springframework.stereotype.Service
 import java.security.MessageDigest
@@ -18,7 +19,8 @@ class SignupService(private val memberRepository: MemberRepository) {
         val newMember = Member(
             email = signupDto.email,
             password = hashedPassword,
-            name = signupDto.name
+            name = signupDto.name,
+            role = MemberRole.USER
         )
         memberRepository.save(newMember)
     }
