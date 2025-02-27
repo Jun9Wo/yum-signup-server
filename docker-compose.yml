@@ -1,0 +1,31 @@
+services:
+  # MySQL 서비스 정의
+  db:
+    image: mysql:8.0  # MySQL 이미지 및 버전
+    container_name: yum-mysql-container  # 컨테이너 이름
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}  # db 사용자 비밀번호
+      MYSQL_DATABASE: ${DB}  # 생성할 기본 데이터베이스 이름
+      MYSQL_USER: ${DB_USERNAME}  # 일반 사용자 이름
+      MYSQL_PASSWORD: ${DB_PASSWORD}  # 일반 사용자 비밀번호
+    restart: on-failure
+    volumes:
+      - mysql_data:/var/lib/mysql  # MySQL 데이터를 저장할 볼륨 정의
+
+  # Spring Boot 서비스 정의
+  app:
+    image: ${IMAGE_NAME}  # 빌드된 Spring Boot Docker 이미지
+    container_name: yum-ingredient-server-container  # 컨테이너 이름
+    depends_on:
+      - db  # db 서비스가 준비된 후에 실행되도록 설정
+    environment:
+      SPRING_DATASOURCE_URL: ${DB_URL}  # MySQL 연결 URL
+      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}  # 데이터베이스 사용자 이름
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}  # 데이터베이스 사용자 비밀번호
+    restart: on-failure
+
+networks:
+  yum-net: {}
+
+volumes:
+  mysql_data:  # MySQL 데이터 저장을 위한 볼륨
