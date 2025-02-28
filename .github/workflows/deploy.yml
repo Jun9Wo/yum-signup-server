@@ -69,5 +69,5 @@ jobs:
           script: |
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPONAME }}:latest
             sudo docker stop yum-ingredient-server-container || true
-            sudo docker-compose -f /home/${{ secrets.AWS_USER }}/app/yum-signup-serverserver/docker-compose.yml up -d
+            sudo docker-compose -f /home/${{ secrets.AWS_USER }}/app/yum-signup-server/docker-compose.yml up -d
             sudo docker image prune -a -f
