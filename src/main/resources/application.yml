@@ -2,12 +2,29 @@ spring:
   application:
     name: yum-signup-server
 
+  config:
+    import: optional:file:.env[.properties]
+
   datasource:
-    url: "jdbc:mysql://localhost:3306/signup?autoReconnect=true&useUnicode=true&serverTimezone=Asia/Seoul"
-    username: signup
-    password: signup
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQLDialect
+
+springdoc:
+  swagger-ui:
+    use-root-path: true
+  api-docs:
+    version: openapi_3_1
+    enabled: true
+    path: /api/signup/v3/api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  enable-spring-security: false
