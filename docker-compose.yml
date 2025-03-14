@@ -2,12 +2,12 @@ services:
   # MySQL 서비스 정의
   db:
     image: mysql:8.0  # MySQL 이미지 및 버전
-    container_name: yum-mysql-container  # 컨테이너 이름
+    container_name: yum-mysql-signup-container  # 변경된 컨테이너 이름
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}  # db 사용자 비밀번호
       MYSQL_DATABASE: ${DB}  # 생성할 기본 데이터베이스 이름
       MYSQL_USER: ${DB_USERNAME}  # 일반 사용자 이름
-      MYSQL_PASSWORD: ${DB_PASSWORD}  # 일반 사용자 비밀번호
+      MYSQL_PASSWORD: ${DB_PASSWORD}  # 데이터베이스 사용자 비밀번호
     restart: on-failure
     volumes:
       - mysql_data:/var/lib/mysql  # MySQL 데이터를 저장할 볼륨 정의
@@ -32,7 +32,6 @@ networks:
   yum-server-net:
     name: yum-server-net
     external: true
-
 
 volumes:
   mysql_data:  # MySQL 데이터 저장을 위한 볼륨
