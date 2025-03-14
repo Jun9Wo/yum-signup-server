@@ -3,18 +3,20 @@ package com.example.yum_signup_server.common.config
 import io.swagger.v3.oas.models.Components
 import io.swagger.v3.oas.models.OpenAPI
 import io.swagger.v3.oas.models.info.Info
+import io.swagger.v3.oas.models.servers.Server
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 class SwaggerConfig {
     @Bean
-    fun openApi(): OpenAPI = OpenAPI()
+    fun openApi() : OpenAPI = OpenAPI()
         .components(Components())
         .info(swaggerInfo())
+        .addServersItem(Server().url("/"))
 
-    private fun swaggerInfo(): Info = Info()
-        .title("Yum 회원가입 및 로그인 API")
-        .description("A&I 프로젝트 회원가입 및 로그인 서버의 API 명세서")
+    private fun swaggerInfo() : Info = Info()
+        .title("Yum 서버 Api 명세")
+        .description("A&I 프로젝트 Yum 서버의 레시피 Api 명세서입니다.")
         .version("1.0.0")
 }
