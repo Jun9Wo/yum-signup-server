@@ -2,9 +2,9 @@ name: Deploy develop CICD
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop" ]  # develop 브랜치에 push될 때 실행
   merge_group:
-    branches: [ "develop" ]
+    branches: [ "develop" ]  # PR을 develop 브랜치에 merge할 때 실행
 
 jobs:
   build:
