@@ -29,13 +29,13 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew clean build -x test
 
-            # 도커 이미지 생성 및 레포 푸시
+      # 도커 이미지 생성 및 레포 푸시
       - name: Build Dockerfile and Push DockerHub
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t jun9wo/yum-signup-server . 
-          docker tag jun9wo/yum-signup-server:latest jun9wo/yum-signup-server:latest
-          docker push jun9wo/yum-signup-server:latest
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPONAME }} . 
+          docker tag ${{ secrets.DOCKER_REPONAME }}:latest ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPONAME }}:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPONAME }}:latest
 
       # EC2 서버로 `docker-compose.yml` 복사
       - name: Copy docker-compose.yml to EC2
