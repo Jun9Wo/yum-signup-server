@@ -11,11 +11,13 @@ services:
     restart: on-failure
     volumes:
       - mysql_data:/var/lib/mysql  # MySQL 데이터를 저장할 볼륨 정의
+    networks:
+      - yum-server-net
 
   # Spring Boot 서비스 정의
   app:
     image: ${IMAGE_NAME}  # 빌드된 Spring Boot Docker 이미지
-    container_name: yum-ingredient-server-container  # 컨테이너 이름
+    container_name: yum-signup-server-container  # 컨테이너 이름
     depends_on:
       - db  # db 서비스가 준비된 후에 실행되도록 설정
     environment:
@@ -23,9 +25,14 @@ services:
       SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}  # 데이터베이스 사용자 이름
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}  # 데이터베이스 사용자 비밀번호
     restart: on-failure
+    networks:
+      - yum-server-net
 
 networks:
-  yum-net: {}
+  yum-server-net:
+    name: yum-server-net
+    external: true
+
 
 volumes:
   mysql_data:  # MySQL 데이터 저장을 위한 볼륨
