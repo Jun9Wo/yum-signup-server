@@ -13,7 +13,7 @@ class SwaggerConfig {
     fun openApi() : OpenAPI = OpenAPI()
         .components(Components())
         .info(swaggerInfo())
-        .addServersItem(Server().url("/api/signup"))
+        .addServersItem(Server().url("/"))
 
     private fun swaggerInfo() : Info = Info()
         .title("Yum Auth API 명세서 (회원가입 및 로그인)")
