@@ -3,7 +3,7 @@ package com.example.yum_signup_server
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication(scanBasePackages = ["com.example"])
+@SpringBootApplication
 class YumSignupServerApplication
 
 fun main(args: Array<String>) {
