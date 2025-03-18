@@ -7,9 +7,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api/auth/login")
 class LoginController(private val loginService: LoginService) {
-
     @Operation(summary = "로그인 API", description = "이메일과 비밀번호를 입력받아 인증을 수행합니다.")
     @PostMapping
     fun loginUser(@RequestBody loginDto: LoginDto): ResponseEntity<String> {
