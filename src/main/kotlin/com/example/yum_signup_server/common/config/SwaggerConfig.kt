@@ -16,7 +16,7 @@ class SwaggerConfig {
         .addServersItem(Server().url("/"))
 
     private fun swaggerInfo() : Info = Info()
-        .title("Yum 서버 Api 명세")
-        .description("A&I 프로젝트 Yum 서버의 회원가입 및 로그인 Api 명세서입니다.")
+        .title("Yum Auth API 명세서 (회원가입 및 로그인)")
+        .description("A&I 프로젝트 Yum 인증 서버의 API 명세서입니다.")
         .version("1.0.0")
 }
