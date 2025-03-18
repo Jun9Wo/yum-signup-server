@@ -24,7 +24,7 @@ springdoc:
   api-docs:
     version: openapi_3_1
     enabled: true
-    path: /api/auth/v3/api-docs
+    path: /api/signup/v3/api-docs
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
   enable-spring-security: false
