@@ -1,6 +1,6 @@
 spring:
   application:
-    name: yum-signup-server
+    name: yum-auth-server
 
   config:
     import: optional:file:.env[.properties]
