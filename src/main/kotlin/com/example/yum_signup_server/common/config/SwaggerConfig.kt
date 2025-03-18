@@ -13,10 +13,12 @@ class SwaggerConfig {
     fun openApi() : OpenAPI = OpenAPI()
         .components(Components())
         .info(swaggerInfo())
-        .addServersItem(Server().url("/"))
+        .addServersItem(Server().url("/api/auth")) // 서버 URL 변경
 
     private fun swaggerInfo() : Info = Info()
         .title("Yum Auth API 명세서 (회원가입 및 로그인)")
         .description("A&I 프로젝트 Yum 인증 서버의 API 명세서입니다.")
         .version("1.0.0")
 }
+
+
