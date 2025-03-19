@@ -17,13 +17,29 @@ services:
   # Spring Boot 서비스 정의
   app:
     image: ${IMAGE_NAME}  # 빌드된 Spring Boot Docker 이미지
-    container_name: yum-signup-server-container  # 컨테이너 이름
+    container_name: yum-auth-server-container # 컨테이너 이름
     depends_on:
       - db  # db 서비스가 준비된 후에 실행되도록 설정
     environment:
       SPRING_DATASOURCE_URL: ${DB_URL}  # MySQL 연결 URL
       SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}  # 데이터베이스 사용자 이름
       SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}  # 데이터베이스 사용자 비밀번호
+    restart: on-failure
+    networks:
+      - yum-server-net
+
+    # 테스트용 Spring Boot 서비스 정의
+  app-test:
+    image: ${IMAGE_NAME}
+    container_name: yum-signup-server-test-container
+    depends_on:
+      - db
+    environment:
+     SPRING_DATASOURCE_URL: ${DB_URL}
+     SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
+     SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8081:8080"   # 이 부분을 environment 밖으로!
     restart: on-failure
     networks:
       - yum-server-net
