@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*
 class SignupController(private val signupService: SignupService) {
 
     @Operation(summary = "회원가입 API", description = "사용자가 회원가입을 요청하면 정보를 저장하고 성공 메시지를 반환합니다.")
-    @PostMapping
+    @PostMapping("")
     fun registerUser(@RequestBody signupDto: SignupDto): ResponseEntity<String> {
         signupService.registerUser(signupDto)
         return ResponseEntity.ok("회원가입 성공!")
     }
 }
+
