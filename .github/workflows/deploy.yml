@@ -51,7 +51,7 @@ jobs:
             sudo docker rm yum-auth-server-container || true
             sudo docker run -d \
               --name yum-auth-server-container \
-              --network yum-server-net
+              --network yum-server-net \
               -e SPRING_DATASOURCE_URL=${{ secrets.DB_URL }} \
               -e SPRING_DATASOURCE_USERNAME=${{ secrets.DB_USERNAME }} \
               -e SPRING_DATASOURCE_PASSWORD=${{ secrets.DB_PASSWORD }} \
